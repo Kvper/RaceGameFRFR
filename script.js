@@ -16,38 +16,39 @@ class Player {
 
   draw() {
     fill("red")
-    rect(this.x, this.y, 40, 40);
+    rect(this.x, this.y, 15, 15);
   }
 
   keyPressed() {
 
     if (keyIsDown(this.up)) {
-      this.y -= 4;
+      this.y -= 1.5;
     }
 
     if (keyIsDown(this.down)) {
-      this.y += 4;
+      this.y += 1.5;
     }
 
     if (keyIsDown(this.left)) {
-      this.x -= 4;
+      this.x -= 1.5;
     }
 
     if (keyIsDown(this.right)) {
-      this.x += 4;
+      this.x += 1.5;
     }
   }
 }
 
 function setup() {
   createCanvas(500, 350);
-  player1 = new Player(200, 200, 5, 5, "img", 87, 83, 65, 68, "red");
-  player2 = new Player(200, 200, 5, 5, "img", 38, 40, 37, 39, "blue");
+  player1 = new Player(175, 36, 5, 5, "img", 87, 83, 65, 68, "red");
+  player2 = new Player(175, 53, 5, 5, "img", 38, 40, 37, 39, "blue");
+  bg = loadImage('Images/bg1.png')
 }
 
 function draw() {
 
-  background(225);
+  background(bg);
   fill(0);
 
 
