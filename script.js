@@ -11,8 +11,11 @@ class Block {
   }
 
   draw() {
-    fill("green")
-    rect(this.x, this.y, this.w, this.h)
+    let squareColor = color(100, 50, 100);
+    squareColor.setAlpha(0);
+    noStroke();
+    fill(squareColor)
+    rect(this.x, this.y, this.w, this.h,)
     
   }
 
@@ -39,39 +42,36 @@ class Player {
   }
 
   isColliding() {
+    this.vx = 1.5;
+    this.vy = 1.5;
     blocks.forEach(block=>{   
        if (this.x < block.x + block.w && this.x + 15 > block.x) {
           if (this.y < block.y + block.h && this.y + 15 > block.y) {
             //jouw bots code hier
-             fill("red");
-             this.isCollidingg = true;
+            //fill("red");
+            this.vx = 0.5;            
+            this.vy = 0.5;     
           }
-           else{
-             this.isCollidingg = false;
-           }
-          } 
-        else{
-           this.isCollidingg = false;
-         }
+       }        
     });     
   }
 
   keyPressed() {
 
     if (keyIsDown(this.up)) {
-      this.y -= 1.5;
+      this.y -= this.vy;
     }
 
     if (keyIsDown(this.down)) {
-      this.y += 1.5;
+      this.y += this.vy;
     }
 
     if (keyIsDown(this.left)) {      
-      this.x -= 1.5;      
+      this.x -= this.vx;      
     }
 
     if (keyIsDown(this.right)) {      
-      this.x += 1.5;      
+      this.x += this.vx;      
     }
   }
 }
@@ -81,17 +81,17 @@ function setup() {
   player1 = new Player(175, 36, 5, 5, "img", 87, 83, 65, 68, "green");
   player2 = new Player(175, 53, 5, 5, "img", 38, 40, 37, 39, "blue");  
   
-  block1 = new Block(25, 35, 10, 290, "green");
-  block2 = new Block(35, 25, 425, 10, "green");
-  block3 = new Block(460, 35, 10, 260, "green");
-  block4 = new Block(320, 295, 140, 10, "green");
-  block5 = new Block(35, 325, 280, 10, "green");
+  block1 = new Block(25, 35, 10, 290, "transparent");
+  block2 = new Block(35, 25, 425, 10, "transparent");
+  block3 = new Block(460, 35, 10, 260, "transparent");
+  block4 = new Block(320, 295, 140, 10, "transparent");
+  block5 = new Block(35, 325, 280, 10, "transparent");
 
   blocks.push(block1);
-  // blocks.push(block2)
-  // blocks.push(block3)
-  // blocks.push(block4)
-  // blocks.push(block5)
+  blocks.push(block2)
+  blocks.push(block3)
+  blocks.push(block4)
+  blocks.push(block5)
   
   bg = loadImage('Images/Bg1FrFr.png')
 }
