@@ -29,6 +29,7 @@ class Player {
     this.left = left;
     this.right = right;
     this.color = color;
+    this.isCollidingg = false;
   }
 
   draw() {    
@@ -37,15 +38,22 @@ class Player {
     rect(this.x, this.y, 15, 15);    
   }
 
-  isColliding(){
+  isColliding() {
     blocks.forEach(block=>{   
        if (this.x < block.x + block.w && this.x + 15 > block.x) {
           if (this.y < block.y + block.h && this.y + 15 > block.y) {
             //jouw bots code hier
-            fill("red");
+             fill("red");
+             this.isCollidingg = true;
           }
-        }
-    });  
+           else{
+             this.isCollidingg = false;
+           }
+          } 
+        else{
+           this.isCollidingg = false;
+         }
+    });     
   }
 
   keyPressed() {
@@ -58,17 +66,15 @@ class Player {
       this.y += 1.5;
     }
 
-    if (keyIsDown(this.left)) {
-      this.x -= 1.5;
+    if (keyIsDown(this.left)) {      
+      this.x -= 1.5;      
     }
 
-    if (keyIsDown(this.right)) {
-      this.x += 1.5;
+    if (keyIsDown(this.right)) {      
+      this.x += 1.5;      
     }
   }
 }
-
-
 
 function setup() {
   createCanvas(500, 350);
@@ -82,12 +88,12 @@ function setup() {
   block5 = new Block(35, 325, 280, 10, "green");
 
   blocks.push(block1);
-  blocks.push(block2)
-  blocks.push(block3)
-  blocks.push(block4)
-  blocks.push(block5)
+  // blocks.push(block2)
+  // blocks.push(block3)
+  // blocks.push(block4)
+  // blocks.push(block5)
   
-    bg = loadImage('Images/Bg1FrFr.png')
+  bg = loadImage('Images/Bg1FrFr.png')
 }
 
 function draw() {
@@ -108,7 +114,7 @@ function draw() {
   
   blocks.forEach(b=>{
     b.draw();
-  })
+  });
   
   
   // if (x >= 0 && x + 50 <= 500) x += vx;
