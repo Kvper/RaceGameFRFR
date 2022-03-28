@@ -12,7 +12,7 @@ class Block {
 
   draw() {
     let squareColor = color(100, 50, 100);
-    squareColor.setAlpha(0);
+    squareColor.setAlpha(255);
     noStroke();
     fill(squareColor)
     rect(this.x, this.y, this.w, this.h,)
@@ -38,19 +38,19 @@ class Player {
   draw() {    
     fill(this.color);
     this.isColliding();
-    rect(this.x, this.y, 15, 15);    
+    rect(this.x, this.y, 10, 10);    
   }
 
   isColliding() {
     this.vx = 1.5;
     this.vy = 1.5;
     blocks.forEach(block=>{   
-       if (this.x < block.x + block.w && this.x + 15 > block.x) {
-          if (this.y < block.y + block.h && this.y + 15 > block.y) {
+       if (this.x < block.x + block.w && this.x + 10 > block.x) {
+          if (this.y < block.y + block.h && this.y + 10 > block.y) {
             //jouw bots code hier
             //fill("red");
-            this.vx = 0.5;            
-            this.vy = 0.5;     
+            this.vx = 0.25;
+            this.vy = 0.25;
           }
        }        
     });     
@@ -86,14 +86,26 @@ function setup() {
   block3 = new Block(460, 35, 10, 260, "transparent");
   block4 = new Block(320, 295, 140, 10, "transparent");
   block5 = new Block(35, 325, 280, 10, "transparent");
+  block6 = new Block(75, 72, 205, 212, "transparent");
+  block7 = new Block(317.5, 35, 40, 110, "transparent");
+  block8 = new Block(390, 70, 30, 185, "transparent");
+  block9 = new Block(280, 190, 110, 25, "transparent");
+  block10 = new Block(328, 250, 30, 66, "transparent");
 
   blocks.push(block1);
-  blocks.push(block2)
-  blocks.push(block3)
-  blocks.push(block4)
-  blocks.push(block5)
+  blocks.push(block2);
+  blocks.push(block3);
+  blocks.push(block4);
+  blocks.push(block5);
+  blocks.push(block6);
+  blocks.push(block7);
+  blocks.push(block8);
+  blocks.push(block9);
+  blocks.push(block10);
   
-  bg = loadImage('Images/Bg1FrFr.png')
+  bg = loadImage('Images/track1.png')
+
+  
 }
 
 function draw() {
