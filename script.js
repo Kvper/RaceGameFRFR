@@ -1,5 +1,9 @@
 var player1, player2;
 var blocks = [];
+var mmenu, tposx1, tposy, tposx2;
+tposx1 = 80;
+tposx2 = 350;
+tposy = 225;
 
 class Block {
   constructor(x, y, w, h, colour) {
@@ -12,7 +16,7 @@ class Block {
 
   draw() {
     let squareColor = color(100, 50, 100);
-    squareColor.setAlpha(255);
+    squareColor.setAlpha(0);
     noStroke();
     fill(squareColor)
     rect(this.x, this.y, this.w, this.h,)
@@ -80,7 +84,7 @@ function setup() {
   createCanvas(500, 350);
   player1 = new Player(175, 36, 5, 5, "img", 87, 83, 65, 68, "green");
   player2 = new Player(175, 53, 5, 5, "img", 38, 40, 37, 39, "blue");  
-  
+  mmenu = 0;
   block1 = new Block(25, 35, 10, 290, "transparent");
   block2 = new Block(35, 25, 425, 10, "transparent");
   block3 = new Block(460, 35, 10, 260, "transparent");
@@ -103,13 +107,15 @@ function setup() {
   blocks.push(block9);
   blocks.push(block10);
   
-  bg = loadImage('Images/track1.png')
-
+  bg = loadImage('Images/bg.png')
+  trackbg = loadImage('Images/trackmenu.png');
+  textSize (21);
+  track1 = loadImage('Images/track1.png');
+  track2 = loadImage('Images/track2.png');
   
 }
 
 function draw() {
-  background(bg);
   fill(0);
 
 
@@ -119,14 +125,36 @@ function draw() {
   //   }
   // }
 
-  player1.draw();
+if (mmenu == 0){
+    background(bg);
+  }
+  
+  if (mmenu == 1){
+    background(trackbg);
+    stroke('gold');
+    strokeWeight(2);
+    fill('white');
+    text('Track 1',80,225);
+    text('Track 2',350,225);
+  }
+  if (mmenu == 3){
+    background(track1);
+    player1.draw();
   player1.keyPressed();
   player2.draw();
   player2.keyPressed();
+
   
   blocks.forEach(b=>{
     b.draw();
-  });
+    
+  })}
+  
+  if (mmenu == 4){
+    background(track2);
+  }
+  
+
   
   
   // if (x >= 0 && x + 50 <= 500) x += vx;
@@ -140,3 +168,24 @@ function draw() {
 //Gebruik maken van 2 pngs om te voor zorgen dat ie op het gras slomer is. 
 // p5.js collision with transparent pixels.
 
+//Menu Functions
+function keyPressed(){
+   if (keyCode === ENTER){
+     mmenu = 1;
+   }
+ }
+
+function mouseClicked() {
+
+  if(mouseX < (width / 2)){
+    console.log("level 1")
+    mmenu = 3;
+  }
+  else{
+    console.log("level 2")
+    mmenu = 4;
+  }
+  //console.log(mouseX, mouseY, 5, 5);
+  // prevent default
+  return false;
+}
