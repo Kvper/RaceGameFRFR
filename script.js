@@ -125,7 +125,7 @@ function draw() {
   //   }
   // }
 
-if (mmenu == 0){
+  if (mmenu == 0){
     background(bg);
   }
   
@@ -140,15 +140,15 @@ if (mmenu == 0){
   if (mmenu == 3){
     background(track1);
     player1.draw();
-  player1.keyPressed();
-  player2.draw();
-  player2.keyPressed();
+    player1.keyPressed();
+    player2.draw();
+    player2.keyPressed();
 
   
-  blocks.forEach(b=>{
-    b.draw();
-    
-  })}
+    blocks.forEach(b=>{
+      b.draw();
+      
+    })}
   
   if (mmenu == 4){
     background(track2);
@@ -177,13 +177,15 @@ function keyPressed(){
 
 function mouseClicked() {
 
-  if(mouseX < (width / 2)){
-    console.log("level 1")
-    mmenu = 3;
-  }
-  else{
-    console.log("level 2")
-    mmenu = 4;
+  if(mmenu == 1){
+    if(mouseX < (width / 2)){
+      console.log("level 1")
+      mmenu = 3;
+    }
+    else{
+      console.log("level 2")
+      mmenu = 4;
+    }
   }
   //console.log(mouseX, mouseY, 5, 5);
   // prevent default
