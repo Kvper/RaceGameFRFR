@@ -1,12 +1,14 @@
 var player1, player2;
 var blocks = [];
+var blocksLevel1 = [];
+var blocksLevel2 = [];
 var mmenu, tposx1, tposy, tposx2;
 tposx1 = 80;
 tposx2 = 350;
 tposy = 225;
 
 class Block {
-  constructor(x, y, w, h, colour) {
+  constructor(x, y, w, h, color) {
     this.x = x;
     this.y = y;
     this.w = w;
@@ -16,7 +18,7 @@ class Block {
 
   draw() {
     let squareColor = color(100, 50, 100);
-    squareColor.setAlpha(0);
+    squareColor.setAlpha(1000);
     noStroke();
     fill(squareColor)
     rect(this.x, this.y, this.w, this.h,)
@@ -37,6 +39,7 @@ class Player {
     this.right = right;
     this.color = color;
     this.isCollidingg = false;
+    this.img = image;
   }
 
   draw() {    
@@ -84,7 +87,7 @@ function setup() {
   createCanvas(500, 350);
   player1 = new Player(175, 36, 5, 5, "img", 87, 83, 65, 68, "green");
   player2 = new Player(175, 53, 5, 5, "img", 38, 40, 37, 39, "blue");  
-  mmenu = 0;
+  mmenu = 4;
   block1 = new Block(25, 35, 10, 290, "transparent");
   block2 = new Block(35, 25, 425, 10, "transparent");
   block3 = new Block(460, 35, 10, 260, "transparent");
@@ -96,16 +99,28 @@ function setup() {
   block9 = new Block(280, 190, 110, 25, "transparent");
   block10 = new Block(328, 250, 30, 66, "transparent");
 
-  blocks.push(block1);
-  blocks.push(block2);
-  blocks.push(block3);
-  blocks.push(block4);
-  blocks.push(block5);
-  blocks.push(block6);
-  blocks.push(block7);
-  blocks.push(block8);
-  blocks.push(block9);
-  blocks.push(block10);
+  block11 = new Block(20, 30, 10, 290, "transparent");
+  block12 = new Block(30, 29, 470, 10, "transparent");
+  block13 = new Block(486, 35, 10, 130, "transparent");
+  block14 = new Block(406, 163, 125, 10, "transparent");
+  block15 = new Block(397, 170, 10, 92, "transparent");
+
+  blocksLevel1.push(block1);
+  blocksLevel1.push(block2);
+  blocksLevel1.push(block3);
+  blocksLevel1.push(block4);
+  blocksLevel1.push(block5);
+  blocksLevel1.push(block6);
+  blocksLevel1.push(block7);
+  blocksLevel1.push(block8);
+  blocksLevel1.push(block9);
+  blocksLevel1.push(block10);
+
+  blocksLevel2.push(block11);
+  blocksLevel2.push(block12);
+  blocksLevel2.push(block13);
+  blocksLevel2.push(block14);
+  blocksLevel2.push(block15);
   
   bg = loadImage('Images/bg.png')
   trackbg = loadImage('Images/trackmenu.png');
@@ -131,13 +146,18 @@ function draw() {
   
   if (mmenu == 1){
     background(trackbg);
+    textSize(21);
     stroke('gold');
     strokeWeight(2);
     fill('white');
     text('Track 1',80,225);
     text('Track 2',350,225);
   }
+
+  //Track 1 Code
   if (mmenu == 3){
+   
+    noStroke();
     background(track1);
     player1.draw();
     player1.keyPressed();
@@ -147,23 +167,45 @@ function draw() {
   
     blocks.forEach(b=>{
       b.draw();
-      
-    })}
-  
-  if (mmenu == 4){
-    background(track2);
+    })
+    textSize(12);
+    stroke('gold');
+    strokeWeight(1);
+    fill('white');
+    text('PRESS ENTER TO GO BACK',325,340);
   }
-  
 
-  
-  
-  // if (x >= 0 && x + 50 <= 500) x += vx;
-  // if (y >= 0 && y + 50 <= 500) y += vy;
-
-  // if (x >= 0 && x + 50 <= 500) x += vx;
-  // if (y >= 0 && y + 50 <= 500) y += vy;
-
+  //Track 2 Code
+  if (mmenu == 4){
+    blocks = blocksLevel2;
+    noStroke();
+    background(track2);
+    player1.draw();
+    player1.keyPressed();
+    player2.draw();
+    player2.keyPressed();
+    
+    
+        blocks.forEach(b=>{
+      b.draw();
+    })
+    textSize(12);
+    stroke('gold');
+    strokeWeight(1);
+    fill('white');
+    text('PRESS ENTER TO GO BACK',325,340);
+  }
 }
+  
+
+  
+  // if (x >= 0 && x + 50 <= 500) x += vx;
+  // if (y >= 0 && y + 50 <= 500) y += vy;
+
+  // if (x >= 0 && x + 50 <= 500) x += vx;
+  // if (y >= 0 && y + 50 <= 500) y += vy;
+
+
 
 //Gebruik maken van 2 pngs om te voor zorgen dat ie op het gras slomer is. 
 // p5.js collision with transparent pixels.
@@ -181,13 +223,16 @@ function mouseClicked() {
     if(mouseX < (width / 2)){
       console.log("level 1")
       mmenu = 3;
+       blocks = blocksLevel1;
     }
     else{
       console.log("level 2")
       mmenu = 4;
+       blocks = blocksLevel2;
     }
-  }
+  
   //console.log(mouseX, mouseY, 5, 5);
   // prevent default
   return false;
+  }
 }
