@@ -18,7 +18,7 @@ class Block {
 
   draw() {
     let squareColor = color(100, 50, 100);
-    squareColor.setAlpha(1000);
+    squareColor.setAlpha(0);
     noStroke();
     fill(squareColor)
     rect(this.x, this.y, this.w, this.h,)
@@ -104,6 +104,17 @@ function setup() {
   block13 = new Block(486, 35, 10, 130, "transparent");
   block14 = new Block(406, 163, 125, 10, "transparent");
   block15 = new Block(397, 170, 10, 92, "transparent");
+  block16 = new Block(255, 260, 150, 10, "transparent")
+  block17 = new Block(260, 130, 33, 170, "transparent")
+  block18 = new Block(143, 290, 140, 10, "transparent")
+  block19 = new Block(125, 197, 33, 120, "transparent")
+  block20 = new Block(20, 297, 130, 10, "transparent")
+  block21 = new Block(60, 70, 390, 28, "transparent")
+  block22 = new Block(60, 70, 33, 193, "transparent")
+  block23 = new Block(60, 70, 168, 92, "transparent")
+  block24 = new Block(195, 70, 33, 185, "transparent")
+  block25 = new Block(325, 70, 37, 158, "transparent")
+  block26 = new Block(325, 70, 128, 60, "transparent")
 
   blocksLevel1.push(block1);
   blocksLevel1.push(block2);
@@ -121,6 +132,18 @@ function setup() {
   blocksLevel2.push(block13);
   blocksLevel2.push(block14);
   blocksLevel2.push(block15);
+  blocksLevel2.push(block16);
+  blocksLevel2.push(block17);
+  blocksLevel2.push(block18);
+  blocksLevel2.push(block19);
+  blocksLevel2.push(block20);
+  blocksLevel2.push(block21);
+  blocksLevel2.push(block22);
+  blocksLevel2.push(block23);
+  blocksLevel2.push(block24);
+  blocksLevel2.push(block25);
+  blocksLevel2.push(block26);
+
   
   bg = loadImage('Images/bg.png')
   trackbg = loadImage('Images/trackmenu.png');
