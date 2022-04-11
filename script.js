@@ -17,8 +17,8 @@ class Block {
   }
 
   draw() {
-    let squareColor = color(100, 50, 100);
-    squareColor.setAlpha(0);
+    let squareColor = color(this.color);
+    squareColor.setAlpha(1000);
     noStroke();
     fill(squareColor)
     rect(this.x, this.y, this.w, this.h,)
@@ -87,7 +87,7 @@ function setup() {
   createCanvas(500, 350);
   player1 = new Player(175, 36, 5, 5, "img", 87, 83, 65, 68, "green");
   player2 = new Player(175, 53, 5, 5, "img", 38, 40, 37, 39, "blue");  
-  mmenu = 4;
+  mmenu = 0;
   block1 = new Block(25, 35, 10, 290, "transparent");
   block2 = new Block(35, 25, 425, 10, "transparent");
   block3 = new Block(460, 35, 10, 260, "transparent");
@@ -98,6 +98,7 @@ function setup() {
   block8 = new Block(390, 70, 30, 185, "transparent");
   block9 = new Block(280, 190, 110, 25, "transparent");
   block10 = new Block(328, 250, 30, 66, "transparent");
+  Finishblock28 = new Block(20, 230, 140, 22, "green")
 
   block11 = new Block(20, 30, 10, 290, "transparent");
   block12 = new Block(30, 29, 470, 10, "transparent");
@@ -115,6 +116,7 @@ function setup() {
   block24 = new Block(195, 70, 33, 185, "transparent")
   block25 = new Block(325, 70, 37, 158, "transparent")
   block26 = new Block(325, 70, 128, 60, "transparent")
+  Finishblock27 = new Block (30, 204, 30, 12, "green")
 
   blocksLevel1.push(block1);
   blocksLevel1.push(block2);
@@ -126,6 +128,7 @@ function setup() {
   blocksLevel1.push(block8);
   blocksLevel1.push(block9);
   blocksLevel1.push(block10);
+  blocksLevel1.push(Finishblock28);
 
   blocksLevel2.push(block11);
   blocksLevel2.push(block12);
@@ -143,6 +146,7 @@ function setup() {
   blocksLevel2.push(block24);
   blocksLevel2.push(block25);
   blocksLevel2.push(block26);
+  blocksLevel2.push(Finishblock27);
 
   
   bg = loadImage('Images/bg.png')
@@ -251,7 +255,9 @@ function mouseClicked() {
     else{
       console.log("level 2")
       mmenu = 4;
-       blocks = blocksLevel2;
+       blocks = blocksLevel2
+      
+       
     }
   
   //console.log(mouseX, mouseY, 5, 5);
