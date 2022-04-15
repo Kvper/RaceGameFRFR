@@ -1,3 +1,4 @@
+
 var player1, player2;
 var blocks = [];
 var blocksLevel1 = [];
@@ -18,7 +19,7 @@ class Block {
 
   draw() {
     let squareColor = color(this.color);
-    squareColor.setAlpha(1000);
+    squareColor.setAlpha(0);
     noStroke();
     fill(squareColor)
     rect(this.x, this.y, this.w, this.h,)
@@ -27,8 +28,12 @@ class Block {
 
 }
 
+function preload() {
+ music = loadSound('Tokyodrift.mp3');
+}
+
 class Player {
-  constructor(x, y, vx, vy, img, up, down, left, right, color) {
+  constructor(x, y, vx, vy, image, up, down, left, right, color) {
     this.x = x;
     this.y = y;
     this.vx = vx;
@@ -43,10 +48,12 @@ class Player {
   }
 
   draw() {    
-    fill(this.color);
+    fill((255,0,0,0));
     this.isColliding();
-    rect(this.x, this.y, 10, 10);    
+    rect(this.x, this.y, 10, 10); 
+    image(car1,this.x - 4 , this.y - 0.5, 18, 11);
   }
+
 
   isColliding() {
     this.vx = 1.5;
@@ -83,10 +90,14 @@ class Player {
   }
 }
 
+let car1, car2;
+
+
+
 function setup() {
   createCanvas(500, 350);
-  player1 = new Player(175, 36, 5, 5, "img", 87, 83, 65, 68, "green");
-  player2 = new Player(175, 53, 5, 5, "img", 38, 40, 37, 39, "blue");  
+  player1 = new Player(175, 36, 5, 5, car1, 87, 83, 65, 68, "transparent");
+  player2 = new Player(175, 53, 5, 5, car2, 38, 40, 37, 39, "transparent");  
   mmenu = 0;
   block1 = new Block(25, 35, 10, 290, "transparent");
   block2 = new Block(35, 25, 425, 10, "transparent");
@@ -98,8 +109,10 @@ function setup() {
   block8 = new Block(390, 70, 30, 185, "transparent");
   block9 = new Block(280, 190, 110, 25, "transparent");
   block10 = new Block(328, 250, 30, 66, "transparent");
-  Finishblock28 = new Block(20, 230, 140, 22, "green")
-
+  Finishblock28 = new Block(153, 35, 13, 37, "green")
+  car1 = loadImage("Images/Car1R.png");
+  car2 = loadImage("Images/Car2R.png");
+  
   block11 = new Block(20, 30, 10, 290, "transparent");
   block12 = new Block(30, 29, 470, 10, "transparent");
   block13 = new Block(486, 35, 10, 130, "transparent");
@@ -154,8 +167,12 @@ function setup() {
   textSize (21);
   track1 = loadImage('Images/track1.png');
   track2 = loadImage('Images/track2.png');
+
+  
   
 }
+
+
 
 function draw() {
   fill(0);
@@ -180,7 +197,7 @@ function draw() {
     text('Track 1',80,225);
     text('Track 2',350,225);
   }
-
+  
   //Track 1 Code
   if (mmenu == 3){
    
@@ -209,7 +226,7 @@ function draw() {
     background(track2);
     player1.draw();
     player1.keyPressed();
-    player2.draw();
+    player2.draw2();
     player2.keyPressed();
     
     
@@ -240,6 +257,7 @@ function draw() {
 //Menu Functions
 function keyPressed(){
    if (keyCode === ENTER){
+     music.stop();
      mmenu = 1;
    }
  }
@@ -251,11 +269,13 @@ function mouseClicked() {
       console.log("level 1")
       mmenu = 3;
        blocks = blocksLevel1;
+      music.loop();
     }
     else{
       console.log("level 2")
       mmenu = 4;
        blocks = blocksLevel2
+      music.loop()
       
        
     }
