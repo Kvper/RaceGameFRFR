@@ -226,7 +226,7 @@ function draw() {
     background(track2);
     player1.draw();
     player1.keyPressed();
-    player2.draw2();
+    player2.draw();
     player2.keyPressed();
     
     
