@@ -4,6 +4,7 @@ var blocks = [];
 var blocksLevel1 = [];
 var blocksLevel2 = [];
 var mmenu, tposx1, tposy, tposx2;
+let number = 0;
 tposx1 = 80;
 tposx2 = 350;
 tposy = 225;
@@ -169,14 +170,18 @@ function setup() {
   track2 = loadImage('Images/track2.png');
 
   
+}
+
+function game() {
+  if(Finishblock28.y + Finishblock28.h > car1.y)
+  number++
+  console.log()
   
 }
 
 
-
 function draw() {
   fill(0);
-
 
   // if (xpos < block.x + block.w && xpos + 50 > block.x) {
   //   if (ypos < block.y + block.h && ypos + 50 > block.y) {
